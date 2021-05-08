@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController; // we import userCotroller that we have create inside app/Http/Controller folder
+use App\Http\Controllers\ProductController; // product controller
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('login');
 });
+
+//we use post method then the default url ('/') then we add our controller name and finally we add the 
+//the function in our controller. as shown below.
+Route::post('/login',[UserController::class,'login']);
+
+Route::get('/',[ProductController::class,'index']);
