@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Cart;
+use Session;  // we import session to get detail for the user who is logged in
+
 class ProductController extends Controller
 {
     //
@@ -44,5 +46,13 @@ class ProductController extends Controller
             return redirect('/login');
         }
      
+    }
+
+    // function to get user cart item details
+
+    static function cartItem()
+    {
+       $userID = Session::get('user')['id'];
+       return Cart::where('user_id',$userID)->count();
     }
 }
