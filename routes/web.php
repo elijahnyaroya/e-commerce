@@ -22,6 +22,11 @@ Route::get('/login', function () {
 //the function in our controller. as shown below.
 Route::post('/login',[UserController::class,'login']);
 
+//for product page
 Route::get('/',[ProductController::class,'index']);
 
+//for detail page
 Route::get('detail/{id}',[ProductController::class,'detail']);
+
+//for searching
+Route::get('search',[ProductController::class,'search']);
