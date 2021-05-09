@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash; // for creating hash in this file we will check hash
 use Illuminate\Http\Request;
 use App\Models\User; //importing model that will communicate with database
+use Session;
+
 
 class UserController extends Controller
 {
@@ -19,5 +21,16 @@ class UserController extends Controller
            $req->session()->put('user',$user);
            return redirect('/');
        }
+    }
+
+    function userarea(){
+        $userData = Session::has('user');
+        if($userData)
+        {
+          return view('/userarea',['userdata'=>Session::get('user')]);
+        }else
+        {
+            return  redirect('/');
+        }
     }
 }

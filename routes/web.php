@@ -18,6 +18,15 @@ Route::get('/login', function () {
     return view('login');
 });
 
+//Loggin out the user and destroying their session
+Route::get('/logout', function () {
+    Session::forget('user');
+    return redirect('/login');
+});
+
+//Routing to user profile area
+Route::get('/userarea',[UserController::class,'userarea']);
+
 //we use post method then the default url ('/') then we add our controller name and finally we add the 
 //the function in our controller. as shown below.
 Route::post('/login',[UserController::class,'login']);
