@@ -23,13 +23,18 @@ Route::get('/logout', function () {
     Session::forget('user');
     return redirect('/login');
 });
-
-//Routing to user profile area
-Route::get('/userarea',[UserController::class,'userarea']);
-
 //we use post method then the default url ('/') then we add our controller name and finally we add the 
 //the function in our controller. as shown below.
 Route::post('/login',[UserController::class,'login']);
+
+//register route
+Route::view('/register','register');
+//we use post method then the default url ('/') then we add our controller name and finally we add the 
+//the function in our controller. as shown below.
+Route::post('/register',[UserController::class,'register']);
+
+//Routing to user profile area
+Route::get('/userarea',[UserController::class,'userarea']);
 
 //for product page
 Route::get('/',[ProductController::class,'index']);
@@ -51,3 +56,4 @@ Route::get('ordernow',[ProductController::class,'orderNow']);
 Route::post('orderplace',[ProductController::class,'orderPlace']);
 
 Route::get('myorder',[ProductController::class,'myOrder']);
+
